@@ -11,6 +11,10 @@ pub fn init_shell() {
         sh.add_history_entry(&command).unwrap();
         let mut args: Vec<&str> = command.trim().split(" ").collect();
 
+        if args[0].trim().is_empty() {
+            continue
+        }
+
         if !commands().iter().any(|command| command.name == args[0].to_lowercase()) {
             println!("Unknown command '{}'", args[0].to_lowercase());
             continue;
