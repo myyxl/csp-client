@@ -1,5 +1,6 @@
 use crate::commands::exit::ExitCommand;
 use crate::commands::help::HelpCommand;
+use crate::commands::ping::PingCommand;
 use crate::commands::sleep::SleepCommand;
 
 pub struct Command<T> {
@@ -17,11 +18,11 @@ pub trait Execute {
 pub fn commands() -> Vec<Command<Box<dyn Execute>>> {
     vec![
         Command {
-            name: "exit",
-            description: "shell: Exit program",
-            syntax: "exit",
-            argc: 0,
-            handler: Box::new(ExitCommand),
+            name: "ping",
+            description: "csp: Ping",
+            syntax: "ping <node> [timeout] [size] [opt]",
+            argc: 1,
+            handler: Box::new(PingCommand)
         },
         Command {
             name: "help",
@@ -36,6 +37,13 @@ pub fn commands() -> Vec<Command<Box<dyn Execute>>> {
             syntax: "sleep <time>",
             argc: 1,
             handler: Box::new(SleepCommand)
+        },
+        Command {
+            name: "exit",
+            description: "shell: Exit program",
+            syntax: "exit",
+            argc: 0,
+            handler: Box::new(ExitCommand),
         }
     ]
 }
