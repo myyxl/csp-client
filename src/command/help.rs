@@ -1,4 +1,4 @@
-use crate::console::command::{commands, Execute};
+use crate::command::{commands, Execute};
 
 pub struct HelpCommand;
 

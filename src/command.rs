@@ -1,7 +1,14 @@
-use crate::commands::exit::ExitCommand;
-use crate::commands::help::HelpCommand;
-use crate::commands::ping::PingCommand;
-use crate::commands::sleep::SleepCommand;
+use crate::command::exit::ExitCommand;
+use crate::command::help::HelpCommand;
+use crate::command::ifc::IfcCommand;
+use crate::command::ping::PingCommand;
+use crate::command::sleep::SleepCommand;
+
+pub mod exit;
+pub mod help;
+pub mod sleep;
+pub mod ping;
+pub mod ifc;
 
 pub struct Command<T> {
     pub name: &'static str,
@@ -22,7 +29,14 @@ pub fn commands() -> Vec<Command<Box<dyn Execute>>> {
             description: "csp: Ping",
             syntax: "ping <node> [timeout] [size] [opt]",
             argc: 1,
-            handler: Box::new(PingCommand)
+            handler: Box::new(PingCommand),
+        },
+        Command {
+            name: "ifc",
+            description: "csp: Show interface",
+            syntax: "ifc",
+            argc: 0,
+            handler: Box::new(IfcCommand),
         },
         Command {
             name: "help",
@@ -36,7 +50,7 @@ pub fn commands() -> Vec<Command<Box<dyn Execute>>> {
             description: "shell: Sleep X ms",
             syntax: "sleep <time>",
             argc: 1,
-            handler: Box::new(SleepCommand)
+            handler: Box::new(SleepCommand),
         },
         Command {
             name: "exit",
@@ -47,4 +61,3 @@ pub fn commands() -> Vec<Command<Box<dyn Execute>>> {
         }
     ]
 }
-

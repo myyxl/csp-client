@@ -1,7 +1,9 @@
-use crate::console::shell::init_shell;
+use crate::shell::init_shell;
 
-mod console;
-mod commands;
+mod command;
+mod network;
+mod state;
+mod shell;
 
 fn main() {
     init_shell()

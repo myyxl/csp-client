@@ -1,6 +1,6 @@
 use std::thread;
 use std::time::Duration;
-use crate::console::command::Execute;
+use crate::command::Execute;
 
 pub struct SleepCommand;
 

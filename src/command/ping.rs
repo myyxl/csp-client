@@ -1,4 +1,4 @@
-use crate::console::command::Execute;
+use crate::command::Execute;
 
 pub struct PingCommand;
 

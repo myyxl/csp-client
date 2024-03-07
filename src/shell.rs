@@ -1,6 +1,6 @@
 use colored::Colorize;
 use rustyline::DefaultEditor;
-use crate::console::command::commands;
+use crate::command::commands;
 
 pub fn init_shell() {
     let prompt = format!("{}{}{}{} ", "[".bright_black(), "csp-client".green(), "]".bright_black(), "$");
