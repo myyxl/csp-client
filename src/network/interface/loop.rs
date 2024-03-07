@@ -1,5 +1,4 @@
-use crate::network::interface::{Interface, Receive, ReceiveTransmit, Transmit};
-use crate::network::interface::zmqproxy::ZmqProxyInterface;
+use crate::network::interface::{Receive, ReceiveTransmit, Transmit};
 
 pub struct LoopInterface;
 

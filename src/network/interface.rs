@@ -12,7 +12,6 @@ pub trait Transmit {
 pub trait ReceiveTransmit: Receive + Transmit {}
 
 pub struct Interface<T> {
-    pub ifc_type: Box<T>,
     pub name: & 'static str,
     pub addr: u32,
     pub netmask: u32,
@@ -22,12 +21,12 @@ pub struct Interface<T> {
     pub rx_error: u32,
     pub tx_bytes: u32,
     pub rx_bytes: u32,
+    pub handler: T,
 }
 
-impl<T: ReceiveTransmit> Interface<T> {
-    pub fn new(ifc_type: Box<T>, name: &'static str, addr: u32, netmask: u32) -> Self {
-        Interface {
-            ifc_type,
+impl<T: ReceiveTransmit + Send + 'static> Interface<T> {
+    pub fn new(name: &'static str, addr: u32, netmask: u32, handler: Box<T>) -> Interface<Box<dyn ReceiveTransmit + Send>> {
+        Interface::<Box<dyn ReceiveTransmit + Send>> {
             name,
             addr,
             netmask,
@@ -37,6 +36,7 @@ impl<T: ReceiveTransmit> Interface<T> {
             rx_error: 0,
             tx_bytes: 0,
             rx_bytes: 0,
+            handler,
         }
     }
 }
