@@ -3,8 +3,12 @@ use crate::network::interface::{Interface, ReceiveTransmit};
 use crate::network::interface::r#loop::LoopInterface;
 use crate::network::interface::zmqproxy::ZmqProxyInterface;
 
+/*
+    TODO:
+        - Create a OnceLock for all values that need to be globally accessible
+ */
 pub struct State {
-    interfaces: Vec<Interface<Box<dyn ReceiveTransmit + Send>>>
+    pub interfaces: Vec<Interface<Box<dyn ReceiveTransmit + Send>>>
 }
 
 pub fn state() -> &'static Mutex<State> {
