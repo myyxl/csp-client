@@ -1,3 +1,7 @@
+use std::sync::{Mutex, OnceLock};
+use crate::network::interface::r#loop::LoopInterface;
+use crate::network::interface::zmqproxy::ZmqProxyInterface;
+
 pub mod r#loop;
 pub mod zmqproxy;
 
@@ -39,4 +43,22 @@ impl<T: ReceiveTransmit + Send + 'static> Interface<T> {
             handler,
         }
     }
+}
+
+pub struct InterfaceState {
+    pub interfaces: Vec<Interface<Box<dyn ReceiveTransmit + Send>>>
+}
+
+pub fn interfaces() -> &'static Mutex<InterfaceState> {
+    static STATE: OnceLock<Mutex<InterfaceState>> = OnceLock::new();
+    STATE.get_or_init(|| {
+        Mutex::new({
+            InterfaceState {
+                interfaces: vec![
+                    Interface::new("LOOP", 10, 5, Box::new(LoopInterface)),
+                    Interface::new("ZMQPROXY", 0, 0, Box::new(ZmqProxyInterface)),
+                ],
+            }
+        })
+    })
 }

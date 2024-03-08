@@ -1,13 +1,13 @@
 use colored::Colorize;
 use crate::command::Execute;
-use crate::state::state;
+use crate::network::interface::interfaces;
 
 pub struct IfcCommand;
 
 impl Execute for IfcCommand {
     fn execute(&self, argv: Vec<&str>) -> Result<Option<String>, String> {
         let mut ret = String::new();
-        let interfaces = { &state().lock().unwrap().interfaces };
+        let interfaces = { &interfaces().lock().unwrap().interfaces };
 
         for interface in interfaces {
             ret.push_str(
