@@ -21,7 +21,7 @@ Not all commands will be implemented at first. The list below lists the ones wit
 - [ ] uptime
 - [ ] cmp
 - [ ] route
-- [ ] ifc
+- [x] ifc
 - [ ] conn
 - [ ] rdpopt
 

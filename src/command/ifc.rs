@@ -11,7 +11,7 @@ impl Execute for IfcCommand {
 
         for interface in interfaces {
             ret.push_str(
-                format!("{}\n\ttx: {} rx: {} txe: {} rxe: {}\n\ttxb: {} (0.0B) rxb: {} (0.0B)\n\n",
+                format!("{}\n\ttx: {:0>5} rx: {:0>5} txe: {:0>5} rxe: {:0>5}\n\ttxb: {} rxb: {}\n\n",
                         interface.name.bold(),
                         interface.tx,
                         interface.rx,
