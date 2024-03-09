@@ -2,6 +2,7 @@ use crate::command::exit::ExitCommand;
 use crate::command::help::HelpCommand;
 use crate::command::ifc::IfcCommand;
 use crate::command::ping::PingCommand;
+use crate::command::route::RouteCommand;
 use crate::command::sleep::SleepCommand;
 
 pub mod exit;
@@ -9,6 +10,7 @@ pub mod help;
 pub mod sleep;
 pub mod ping;
 pub mod ifc;
+mod route;
 
 pub struct Command<T> {
     pub name: &'static str,
@@ -30,6 +32,13 @@ pub fn commands() -> Vec<Command<Box<dyn Execute>>> {
             syntax: "ping <node> [timeout] [size] [opt]",
             argc: 1,
             handler: Box::new(PingCommand),
+        },
+        Command {
+            name: "route",
+            description: "csp: Show routing table",
+            syntax: "route",
+            argc: 0,
+            handler: Box::new(RouteCommand),
         },
         Command {
             name: "ifc",

@@ -55,8 +55,8 @@ pub fn interfaces() -> &'static Mutex<InterfaceState> {
         Mutex::new({
             InterfaceState {
                 interfaces: vec![
-                    Interface::new("LOOP", 10, 5, Box::new(LoopInterface)),
-                    Interface::new("ZMQPROXY", 0, 0, Box::new(ZmqProxyInterface)),
+                    Interface::new("LOOP", 30, 0, Box::new(LoopInterface)),
+                    Interface::new("ZMQPROXY", 10, 0, Box::new(ZmqProxyInterface)),
                 ],
             }
         })
