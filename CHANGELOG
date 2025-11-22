@@ -1,0 +1,19 @@
+csp-client v1.3 2017.10.17
+--------------------------
+- clients: Added z7000 client
+
+csp-client v1.2 2017.08.30
+--------------------------
+- clients: Updated nanocam2 client module
+
+csp-client v1.1 2017.06.04
+--------------------------
+- clients: Fix for 'ax100 hk' command in nanocom-ax client
+- clients: Fix for detecting timeout on 'eps hk' command in nanopower command
+- clients: Updated P60 client modules
+- clients: Added libfp and libhk clients
+
+csp-client v1.0 2016.11.17
+--------------------------
+- Initial release with all clients as well as ftp and rparam clients
+

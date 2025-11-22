@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+import os
+
+APPNAME = 'libfp'
+VERSION = '1.0'
+
+def options(ctx):
+    ctx.load('compiler_c')
+
+    # Group options
+    gr = ctx.add_option_group('libfp options')
+    gr.add_option('--enable-fp-server', action='store_true', help='Enable flight planner server')
+    gr.add_option('--enable-fp-client', action='store_true', help='Enable flight planner client')
+
+def configure(ctx):
+    if ctx.options.enable_fp_client == 1:
+        ctx.define_cond('ENABLE_FP_CLIENT', ctx.options.enable_fp_client)
+        ctx.env.append_unique('FILES_FP', 'src/client/*.c')
+    
+    if ctx.options.enable_fp_server == 1:
+        ctx.define_cond('ENABLE_FP_SERVER', ctx.options.enable_fp_server)
+        ctx.env.append_unique('FILES_FP', 'src/server/*.c')
+    
+    ctx.write_config_header('include/conf_fp.h', top=True, remove=True)
+    
+def build(ctx):
+
+    ctx(export_includes='include', name='fp_h')
+
+    if ctx.env.FILES_FP:
+        ctx.objects(
+            source=ctx.path.ant_glob(ctx.env.FILES_FP, excl = ctx.env.EXCLUDES_FP),
+            target='fp',
+            includes='include',
+            export_includes='include',
+            use='csp gosh log',
+        )

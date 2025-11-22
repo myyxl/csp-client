@@ -1,0 +1,68 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+import os
+
+APPNAME = 'libhk'
+VERSION = '1.0'
+
+def options(ctx):
+	ctx.load('compiler_c')
+
+	# Group options
+	gr = ctx.add_option_group('libhk options')
+	gr.add_option('--paramtbl-libhk', action='store', default=19, help='Set libkhk param table')
+	gr.add_option('--paramtbl-libhk-settings', action='store', default=20, help='Set user-defined parameter table')
+	gr.add_option('--libhk-port', action='store', default=21, help='Enable housekeeping collector')
+	gr.add_option('--enable-hk-collector', action='store_true', help='Enable housekeeping collector')
+	gr.add_option('--enable-hk-parser', action='store_true', help='Enable beacon parser')
+	gr.add_option('--enable-hk-persist', action='store_true', help='Enable housekeeping persistence')
+	gr.add_option('--enable-hk-file', action='store_true', help='Enable housekeeping file io')
+
+def configure(ctx):
+
+	if ctx.options.enable_hk_collector == 1:
+		ctx.define('ENABLE_HKCOLLECTOR', True)
+		ctx.env.append_unique('FILES_HK', 'src/collector/*.c')
+		ctx.env.append_unique('FILES_HK', 'src/store/*.c')
+
+	if ctx.options.enable_hk_parser == 1:
+		ctx.check_cfg(package='libmongoc-1.0', args='--cflags --libs', uselib_store='MONGO')
+		ctx.env.LIBS += ctx.env.LIB_MONGO
+		ctx.env.INCLUDES += ctx.env.INCLUDES_MONGO
+		ctx.check_cfg(package='libcurl', args='--cflags --libs', uselib_store='CURL')
+		ctx.env.LIBS += ctx.env.LIB_CURL
+		ctx.env.INCLUDES += ctx.env.INCLUDES_CURL
+		ctx.define('ENABLE_PARSER', True)
+		ctx.env.append_unique('FILES_HK', 'src/db/*.c')
+		ctx.env.append_unique('FILES_HK', 'src/parser/hk_parser.c')
+		ctx.env.append_unique('FILES_HK', 'src/parser/hk_parser_cmd.c')
+
+	if ctx.options.enable_hk_persist == 1:
+		ctx.define('ENABLE_PERSIST', True)
+		ctx.env.append_unique('FILES_HK', 'src/file/*.c')
+	elif ctx.options.enable_hk_file == 1:
+		ctx.define('ENABLE_HKFILE', True)
+		ctx.env.append_unique('FILES_HK', 'src/file/hk_file.c')
+		ctx.env.append_unique('FILES_HK', 'src/file/hk_bcn_file.c')
+		ctx.env.append_unique('FILES_HK', 'src/store/hk_store.c')
+		
+	ctx.env.append_unique('FILES_HK', 'client/*.c')
+	ctx.env.append_unique('FILES_HK', 'src/hk_index.c')
+	
+	ctx.define('PARAMTBL_LIBHK', ctx.options.paramtbl_libhk)
+	ctx.define('PARAMTBL_LIBHK_SETTINGS', ctx.options.paramtbl_libhk_settings)
+	ctx.define('LIBHK_SERVER_PORT', ctx.options.libhk_port)
+
+	ctx.write_config_header('include/conf_hk.h', top=True, remove=True)
+	
+def build(ctx):
+
+	if ctx.env.FILES_HK:
+		ctx.objects(source=ctx.path.ant_glob(ctx.env.FILES_HK, excl=ctx.env.EXCLUDES_HK),
+			target='hk',
+			includes=['include', 'client', 'store'] + ctx.env.INCLUDES,
+			export_includes='include',
+			use='util gosh csp param client',
+		)
+

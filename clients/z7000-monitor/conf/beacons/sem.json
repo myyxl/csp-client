@@ -1,0 +1,21 @@
+{
+    "name" : "z7000_sem",
+    "description" : "Z7000 Sem beacon",
+    "data" : [
+	{
+	    "table" : "sem",
+	    "parameters" :
+	    [
+		{ "name" : "toterr" },
+		{ "name" : "totcorrerr"	},
+		{ "name" : "totuncorrerr" },
+		{ "name" : "last-time" },
+		{ "name" : "last-pa" },
+		{ "name" : "last-la" },
+		{ "name" : "last-wd" },
+		{ "name" : "last-bt" },
+		{ "name" : "state" }
+	    ]
+	}
+    ]
+}

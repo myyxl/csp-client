@@ -1,0 +1,7 @@
+.lock-waf_linux_build
+.python-version
+eclipse.pyc
+build/
+.waf*
+.vscode
+__pycache__

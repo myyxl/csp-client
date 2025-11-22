@@ -1,0 +1,392 @@
+{
+	"header-name": "soft_param",
+	"tables": [{
+		"name": "board",
+		"mem-id" : 0,
+		"parameters": [{
+			"name": "kissbaud",
+			"type": "uint32",
+			"modifier": "B",
+			"default": "500000",
+			"description": "kiss UART baud-rate"
+		}, {
+			"name": "maxtemp",
+			"type": "uint8",
+			"modifier": "B",
+			"default": "80",
+			"description": "Over temperature protection. Board shutsdown if the core temperature gets above this value. Setting this parameter below 50 disables the feature"
+		}, {
+			"name": "pwrdwn_delay",
+			"type": "uint8",
+			"modifier": "B",
+			"default": "20",
+			"description": "Number of seconds that the delayed power-off in the EPS is set to so Linux has time to shutdown"
+		}, {
+			"name": "cmd_pwroff",
+			"type": "int8",
+			"modifier": "A",
+			"description": "Set to '1' to start a soft shutdown of the board. This value will be set to '2' by the monitor once the shutdown has been initiated. If `eps_type`, `eps_node`, and `pwrdwn_delay` has been configured, a delayed off command will be sent to the EPS"
+		}, {
+			"name": "usb_ena",
+			"type": "bool",
+			"modifier": "A",
+			"default": "0",
+			"description": "Enable the USB phy so USB ethernet can be used"
+		}, {
+			"name": "csp_rtable",
+			"type": "string",
+			"size": 96,
+			"modifier": "B",
+			"description": "CSP routing table in the CIDR format: See GOSH manual for further details"
+		}, {
+			"name": "csp_addr",
+			"type": "uint8",
+			"modifier": "B",
+			"default": "31",
+			"description": "CSP address of the Z7000 Monitor"
+		}, {
+			"name": "init_ad9361",
+			"type": "bool",
+			"modifier": "B",
+			"default": "0",
+			"description": "If set to true the monitor will place all TR600s in sleep mode after boot"
+		}, {
+			"name": "bootok_node",
+			"type": "uint8",
+			"modifier": "B",
+			"default": "31",
+			"description": "The monitor will try to ping this CSP node and if it gets an response it will set the boot ok flag"
+		}, {
+			"name": "powerchan",
+			"type": "int8",
+			"modifier": "A",
+			"default": "-1",
+			"description": "The power channel that the board is powered from. This is used to power off the board in an over temperature event, or a soft shutdown."
+		}, {
+			"name": "eps_node",
+			"type": "int8",
+			"modifier": "A",
+			"default": "-1",
+			"description": "EPS csp address. Used to send power-off command to the EPS, -1 disables the feature"
+		}, {
+			"name": "kissdevice",
+			"type": "string",
+			"modifier": "B",
+			"default": "",
+			"size" : 32,
+			"description": "UART device to use for CSP/KISS connection"
+
+		}, {
+			"name": "en_uart1",
+			"type": "bool",
+			"modifier": "A",
+			"default": "1",
+			"description": "Enable/disable RS422 UART"
+		}, {
+			"name": "eps_type",
+			"type": "uint8",
+			"modifier": "A",
+			"default": "0",
+			"description": "EPS type. 0: P31u, 1: P60"
+		}]
+	}, {
+		"name": "sem",
+		"table-size": 255,
+		"description": "Soft Error Mitigation Core (SEM) status",
+		"mem-id" : 3,
+		"parameters": [{
+			"name": "toterr",
+			"type": "uint32",
+			"flags": ["persist"],
+			"description": "Total number of errors detected"
+		}, {
+			"name": "totcorrerr",
+			"type": "uint32",
+			"flags": ["persist"],
+			"description": "Total number of errors corrected"
+		}, {
+			"name": "totuncorrerr",
+			"type": "uint32",
+			"flags": ["persist"],
+			"description": "Total number of uncorrected errors"
+		}, {
+			"name": "last-time",
+			"type": "uint32",
+			"flags": ["persist"],
+			"description": "Unix time stamp for last event"
+		}, {
+			"name": "last-pa",
+			"type": "uint32",
+			"flags": ["persist"],
+			"description": "Physical frame address of last error"
+		}, {
+			"name": "last-la",
+			"type": "uint32",
+			"flags": ["persist"],
+			"description": "Linear frame address of last error"
+		}, {
+			"name": "last-wd",
+			"type": "uint8",
+			"flags": ["persist"],
+			"description": "Word in frame location of last error"
+		}, {
+			"name": "last-bt",
+			"type": "uint8",
+			"flags": ["persist"],
+			"description": "Bit in word location of last error"
+		}, {
+			"name": "state",
+			"type": "int8",
+			"description": "SEM core state: UNKNOWN=-1, IDLE=0, INIT=1, OBS=2, CORR=4, CLASS=8, INJECT=16, ERROR=31"
+		}]
+	}, {
+		"name": "sample",
+		"mem-id": 5,
+		"parameters": [{
+			"name": "numofsamp",
+			"type": "uint32"
+		}, {
+			"name": "maxfilesize",
+			"type": "uint32"
+		}, {
+			"name": "fs_hz",
+			"type": "uint32"
+		}, {
+			"name": "bw_hz",
+			"type": "uint32"
+		}, {
+			"name": "lo_hz",
+			"type": "uint64"
+		}, {
+			"name": "cmd_start",
+			"type": "bool"
+		}, {
+			"name": "pwr",
+			"type": "uint8"
+		}, {
+			"name": "status",
+			"type": "int8"
+		}, {
+			"name": "filename",
+			"type": "string",
+			"size": 48
+		}]
+	}, {
+		"name": "telem",
+		"table-size": 255,
+		"mem-id" : 4,
+		"parameters": [{
+			"name": "coretemp",
+			"type": "int16",
+			"modifier": "R",
+			"unit": "C",
+			"description": "Core temperature of the Z7000 SoC in tenths of degrees celcius"
+		}, {
+			"name": "softadctemp",
+			"type": "int16",
+			"modifier": "R",
+			"unit": "C",
+			"description": "Temperature of the Z7000 daughterboard ADC in tenths of degrees celcius"
+		}, {
+			"name": "femtemp",
+			"type": "int16",
+			"array_size": 3,
+			"modifier": "R",
+			"unit": "C",
+			"description": "Temperature of FEM (Front End Module: TR600) in tenths of degrees celcius"
+		}, {
+			"name": "femadctemp",
+			"type": "int16",
+			"array_size": 3,
+			"modifier": "R",
+			"unit": "C",
+			"description": "Temperature of FEM ADC in tenths of degrees celcius"
+		}, {
+			"name": "corevcc",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mV",
+			"description": "PL Internal core logic voltage. Nominal 1V"
+		}, {
+			"name": "vccaux",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mV",
+			"description": "PL I/O buffer pre-driver voltage. Nominal 1.8V"
+		}, {
+			"name": "vccbram",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mV",
+			"description": "PL block ram voltage. Nominal 1V"
+		}, {
+			"name": "vccpint",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mV",
+			"description": "PS Internal core logic voltage. Nominal 1V"
+		}, {
+			"name": "vccpaux",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mV",
+			"description": "PS I/O buffer pre-driver voltage. Nominal 1.8V"
+		}, {
+			"name": "vccoddr",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mV",
+			"description": "DDR memory interface voltage. Nominal 1.35V"
+		}, {
+			"name": "vrefp",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mV",
+			"description": "Positive ADC reference voltage. Nominal 1.25V"
+		}, {
+			"name": "vrefn",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mV",
+			"description": "Negative ADC reference voltage. Nominal 0V"
+		}, {
+			"name": "unixtime",
+			"type": "uint64",
+			"modifier": "R",
+			"description": "Not implemented"
+		}, {
+			"name": "fem1v3b",
+			"type": "uint16",
+			"array_size": 3,
+			"modifier": "R",
+			"unit": "mV",
+			"description": "TR600 1V3B voltage. Nominal 1.3V"
+		}, {
+			"name": "fem-lna1-ma",
+			"type": "uint16",
+			"array_size": 3,
+			"modifier": "R",
+			"unit": "mA",
+			"description": "Not in use"
+		}, {
+			"name": "fem-lna2-ma",
+			"type": "uint16",
+			"array_size": 3,
+			"modifier": "R",
+			"unit": "mA",
+			"description": "Not in use"
+		}, {
+			"name": "fem1v3ama",
+			"type": "uint16",
+			"array_size": 3,
+			"modifier": "R",
+			"unit": "mA",
+			"description": "TR600 1V3A current consumption"
+		}, {
+			"name": "fem1v8ma",
+			"type": "uint16",
+			"array_size": 3,
+			"modifier": "R",
+			"unit": "mA",
+			"description": "TR600 1V8 current consumption"
+		}, {
+			"name": "fem1v3a",
+			"type": "uint16",
+			"array_size": 3,
+			"modifier": "R",
+			"unit": "mV",
+			"description": "TR600 1V3A voltage. Nominal 1.3V"
+		}, {
+			"name": "fem1v8",
+			"type": "uint16",
+			"array_size": 3,
+			"modifier": "R",
+			"unit": "mV",
+			"description": "TR600 1V8 voltage. Nominal 1.8V"
+		}, {
+			"name": "fem1v3bma",
+			"type": "uint16",
+			"array_size": 3,
+			"modifier": "R",
+			"unit": "mA",
+			"description": "TR600 1V3B current consumption"
+		}, {
+			"name": "uptime",
+			"type": "uint32",
+			"modifier": "R",
+			"unit": "s",
+			"description": "System uptime"
+		}, {
+			"name": "loads",
+			"type": "uint32",
+			"array_size": 3,
+			"modifier": "R",
+			"description": "15 min, 5 min, and 1 min load average. Divide by 65536 to get value as reported by i.e. top or uptime"
+		}, {
+			"name": "freeram",
+			"type": "uint32",
+			"modifier": "R",
+			"unit": "kB",
+			"description": "Available system memory"
+		}, {
+			"name": "procs",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "#",
+			"description": "Number of current processes"
+		}, {
+			"name": "ps1v8mw",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mW",
+			"description": "PS 1.8V supply power consumption"
+		}, {
+			"name": "ps1vmw",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mW",
+			"description": "PS 1V supply power consumption"
+		}, {
+			"name": "ps3v3mw",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mW",
+			"description": "PS 3.3V supply power consumption"
+		}, {
+			"name": "pl1v8mw",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mW",
+			"description": "PL 1.8V supply power consumption"
+		}, {
+			"name": "pl1vmw",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mW",
+			"description": "PL 1V supply power consumption"
+		}, {
+			"name": "ram1v35mw",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mW",
+			"description": "DDR 1.35V supply power consumption"
+		}, {
+			"name": "pl3v3mw",
+			"type": "uint16",
+			"modifier": "R",
+			"unit": "mW",
+			"description": "PL 3.3V supply power consumption"
+		}, {
+			"name": "boot_count",
+			"type": "uint32",
+			"modifier": "R",
+			"flags": ["persist"],
+			"description": "Number of system boots"
+		}, {
+			"name": "softvin7",
+			"type": "uint16",
+			"modifier": "R",
+			"description": "Not in use"
+		}]
+	}]
+}

@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+APPNAME = 'nanocam2-client'
+
+top	= '.'
+out	= 'build'
+
+def options(ctx):
+    gr = ctx.add_option_group('NanoCam client options')
+    gr.add_option('--disable-nanocam-cmd', action='store_true', help='Disable client cmd code for NanoCam')
+	
+def configure(ctx):
+    ctx.env.append_unique('FILES_NANOCAM2_CLIENT', ['nanocam.c'])
+    if not ctx.options.disable_nanocam_cmd:
+        ctx.env.append_unique('FILES_NANOCAM2_CLIENT', ['cmd_nanocam.c'])
+
+	
+def build(ctx):
+    ctx.objects(
+        source = ctx.path.ant_glob(ctx.env.FILES_NANOCAM2_CLIENT),
+        target = APPNAME,
+        includes = '.',
+        export_includes = '.',
+        use = ['csp', 'gosh', 'param']
+    )

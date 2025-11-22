@@ -1,0 +1,46 @@
+{
+    "name" : "z7000_mon",
+    "description" : "Z7000 Monitor beacon",
+    "data" : [
+	{
+	    "table" : "telem",
+	    "parameters" :
+	    [
+		{ "name" : "coretemp" },
+		{ "name" : "softadctemp" },
+		{ "name" : "femtemp", "array_index" :  "0-2" },
+		{ "name" : "femadctemp", "array_index" :  "0-2" },
+		{ "name" : "corevcc" },
+		{ "name" : "vccaux" },
+		{ "name" : "vccbram" },
+		{ "name" : "vccpint" },
+		{ "name" : "vccpaux" },
+		{ "name" : "vccoddr" },
+		{ "name" : "vrefp" },
+		{ "name" : "vrefn" },
+		{ "name" : "unixtime" },
+		{ "name" : "fem1v3b", "array_index" : "0-2" },
+		{ "name" : "fem-lna1-ma", "array_index" : "0-2" },
+		{ "name" : "fem-lna2-ma", "array_index" : "0-2" },
+		{ "name" : "fem1v3ama", "array_index" : "0-2" },
+		{ "name" : "fem1v8ma", "array_index" : "0-2" },
+		{ "name" : "fem1v3a", "array_index" : "0-2" },
+		{ "name" : "fem1v8", "array_index" : "0-2" },
+		{ "name" : "fem1v3bma", "array_index" : "0-2" },
+		{ "name" : "uptime" },
+		{ "name" : "loads", "array_index" : "0-2" },
+		{ "name" : "freeram" },
+		{ "name" : "procs" },
+		{ "name" : "ps1v8mw" },
+		{ "name" : "ps1vmw" },
+		{ "name" : "ps3v3mw" },
+		{ "name" : "pl1v8mw" },
+		{ "name" : "pl1vmw" },
+		{ "name" : "ram1v35mw" },
+		{ "name" : "pl3v3mw" },
+		{ "name" : "softvin7" },
+		{ "name" : "boot_count" }
+	    ]
+	}
+    ]
+}

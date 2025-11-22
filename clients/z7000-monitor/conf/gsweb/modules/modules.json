@@ -1,0 +1,585 @@
+[
+    {
+	"_id" : "<sat_shortname>_<node_shortname>_telem_table",
+	"Type" : "TableModule",
+	"Table" : "telem",
+	"Title" : "<sat_shortname> <node_shortname> Telemetry Table"
+    },{
+	"_id" : "<sat_shortname>_<node_shortname>_vcc",
+	"Type" : "GraphModule",
+	"Title" : "<sat_shortname> <node_shortname> VCC",
+	"Params" : [
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "corecvv"
+		},
+		"Axis" : "1"
+            },
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vccaux"
+		},
+		"Axis" : "1"
+            },
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vccbram"
+		},
+		"Axis" : "1"
+            },
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vccpint"
+		},
+		"Axis" : "1"
+            },
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vccpaux"
+		},
+		"Axis" : "1"
+            },
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vccoddr"
+		},
+		"Axis" : "1"
+            },
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vrefp"
+		},
+		"Axis" : "1"
+            }
+	]
+    },{
+	"_id" : "<sat_shortname>_<node_shortname>_temps",
+	"Params" : [
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "coretemp"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "softadctemp"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "femadctemp",
+                    "Index" : "0"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "femadctemp",
+                    "Index" : "1"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "femadctemp",
+                    "Index" : "2"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "femtemp",
+                    "Index" : "0"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "femtemp",
+                    "Index" : "1"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "femtemp",
+                    "Index" : "2"
+		},
+		"Axis" : "1"
+            }
+	],
+	"Type" : "GraphModule",
+	"Title" : "ISL Temps"
+    },{
+	"_id" : "<sat_shortname>_<node_shortname>_misc",
+	"Params" : [
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "freeram"
+		},
+		"Axis" : "3"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "procs"
+		},
+		"Axis" : "2"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "loads",
+                    "Index" : "0"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "loads",
+                    "Index" : "1"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "loads",
+                    "Index" : "2"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "uptime"
+		},
+		"Axis" : "2"
+            }
+	],
+	"Type" : "GraphModule",
+	"Title" : "ISL Misc"
+    },{
+	"_id" : "<sat_shortname>_<node_shortname>_status",
+	"Params" : [
+	    {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "corevcc"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vccaux"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vccbram"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vccoddr"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vccpaux"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vccpint"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "vrefp"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "loads",
+                    "Index" : "0"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "loads",
+                    "Index" : "1"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "loads",
+                    "Index" : "2"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "freeram"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "procs"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "unixtime"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "coretemp"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "softadctemp"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "pl1v8mw"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "pl1vmw"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "pl3v3mw"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "ps1v8mw"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "ps1vmw"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "ps3v3mw"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "ram1v35mw"
+		}
+            }
+	],
+	"Type" : "TextModule",
+	"Title" : "ISL SDR"
+    },{
+	"_id" : "<sat_shortname>_<node_shortname>_tr600_0",
+	"Params" : [
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "femadctemp",
+                    "Index" : "0"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "femtemp",
+                    "Index" : "0"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3a",
+                    "Index" : "0"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3ama",
+                    "Index" : "0"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3b",
+                    "Index" : "0"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3bma",
+                    "Index" : "0"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v8",
+                    "Index" : "0"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v8ma",
+                    "Index" : "0"
+		}
+            }
+	],
+	"Type" : "TextModule",
+	"Title" : "ISL TR600 0"
+    },{
+	"_id" : "<sat_shortname>_<node_shortname>_tr600_2",
+	"Params" : [
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "femadctemp",
+                    "Index" : "2"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3a",
+                    "Index" : "2"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3ama",
+                    "Index" : "2"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3b",
+                    "Index" : "2"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3bma",
+                    "Index" : "2"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v8",
+                    "Index" : "2"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v8ma",
+                    "Index" : "2"
+		}
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "femtemp",
+                    "Index" : "2"
+		}
+            }
+	],
+	"Type" : "TextModule",
+	"Title" : "ISL TR600 2"
+    },{
+	"_id" : "<sat_shortname>_<node_shortname>_tr600_curr",
+	"Params" : [
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3ama",
+                    "Index" : "0"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3ama",
+                    "Index" : "2"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3bma",
+                    "Index" : "0"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3bma",
+                    "Index" : "2"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v8ma",
+                    "Index" : "0"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v8ma",
+                    "Index" : "2"
+		},
+		"Axis" : "1"
+            }
+	],
+	"Type" : "GraphModule",
+	"Title" : "ISL TR600 Current"
+    },{
+	"_id" : "<sat_shortname>_<node_shortname>_tr600_vcc",
+	"Params" : [
+            {
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3a",
+                    "Index" : "0"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3a",
+                    "Index" : "1"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3a",
+                    "Index" : "2"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3b",
+                    "Index" : "0"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3b",
+                    "Index" : "1"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v3b",
+                    "Index" : "2"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v8",
+                    "Index" : "0"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v8",
+                    "Index" : "1"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "telem",
+                    "Name" : "fem1v8",
+                    "Index" : "2"
+		},
+		"Axis" : "1"
+            }
+	],
+	"Type" : "GraphModule",
+	"Title" : "ISL TR600 Voltage"
+    },{
+	"_id" : "<sat_shortname>_<node_shortname>_sem_table",
+	"Type" : "TableModule",
+	"Table" : 3,
+	"Title" : "R - ISL - sem"
+    },{
+	"_id" : "<sat_shortname>_<node_shortname>_sem",
+	"Params" : [
+            {
+		"Param" : {
+                    "Table" : "sem",
+                    "Name" : "toterr"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "sem",
+                    "Name" : "totcorrerr"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "sem",
+                    "Name" : "totuncorrerr"
+		},
+		"Axis" : "1"
+            },{
+		"Param" : {
+                    "Table" : "sem",
+                    "Name" : "last-time"
+		},
+		"Axis" : "0"
+            },{
+		"Param" : {
+                    "Table" : "sem",
+                    "Name" : "last-pa"
+		},
+		"Axis" : "0"
+            },{
+		"Param" : {
+                    "Table" : "sem",
+                    "Name" : "last-la"
+		},
+		"Axis" : "0"
+            },{
+		"Param" : {
+                    "Table" : "sem",
+                    "Name" : "last-wd"
+		},
+		"Axis" : "0"
+            },{
+		"Param" : {
+                    "Table" : "sem",
+                    "Name" : "last-bt"
+		},
+		"Axis" : "0"
+            },{
+		"Param" : {
+                    "Table" : "sem",
+                    "Name" : "state"
+		},
+		"Axis" : "2"
+            }
+	],
+	"Type" : "GraphModule",
+	"Title" : "RED - ISL SEM"
+    }
+]
